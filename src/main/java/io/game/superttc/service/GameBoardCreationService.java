@@ -39,7 +39,7 @@ public class GameBoardCreationService {
         int counter = 0;
 
         for(int i = 0; i <  board.getBoardSpace().length; i++) {
-            for (int j = 0; j <  board.getBoardSpace()[i].length  ; i++) {
+            for (int j = 0; j <  board.getBoardSpace()[i].length  ; j++) {
                 board.getBoardSpace()[i][j] = innerBoardList.get(counter);
                 counter++;
             }
