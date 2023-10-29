@@ -1,3 +1,5 @@
+package io.game.superttc;
+
 import java.util.Scanner;
 
 public class SuperTicTacToe {
