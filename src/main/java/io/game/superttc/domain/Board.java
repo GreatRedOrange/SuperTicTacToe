@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Board {
-    Object[][] boardSpace;
+    Object[][] boardSpace = new Object[3][3];
     BoardStatus boardStatus;
 
 }
