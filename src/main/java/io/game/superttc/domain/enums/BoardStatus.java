@@ -4,6 +4,7 @@ public enum BoardStatus {
 
     WIN_X,
     WIN_O,
-    DRAW;
-
+    DRAW,
+    NEW,
+    IN_PROGRESS
 }

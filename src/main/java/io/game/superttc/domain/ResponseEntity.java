@@ -2,8 +2,8 @@ package io.game.superttc.domain;
 
 public class ResponseEntity {
 
-    Board gameBoard;
+    private Board gameBoard;
 
-    Coordinate coordinates;
+    private Coordinate outerBoardCoordinate;
 
 }
