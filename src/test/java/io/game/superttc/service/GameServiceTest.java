@@ -23,6 +23,7 @@ import io.game.superttc.repository.GameStorage;
 import static io.game.superttc.utils.TestConstants.FIRST_PLAYER_NAME;
 import static io.game.superttc.utils.TestConstants.ID;
 import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
+import static io.game.superttc.utils.TestData.getFullGame;
 import static io.game.superttc.utils.TestData.getGameBoard;
 import static io.game.superttc.utils.TestData.getNewGame;
 import static io.game.superttc.utils.TestData.getPlayer;
@@ -39,7 +40,7 @@ class GameServiceTest {
 
     @BeforeEach
     void setup() {
-        GameStorage.getInstance().addGame(ID, getNewGame());
+        GameStorage.getInstance().setGame(ID, getNewGame());
         when(gameBoardCreationService.createBoard()).thenReturn(getGameBoard());
     }
 
@@ -62,14 +63,12 @@ class GameServiceTest {
         assertEquals(ID, actualGame.getUuid());
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(SECOND_PLAYER_NAME, actualGame.getPlayer2().getName());
+        assertEquals(GameStatus.IN_PROGRESS, actualGame.getGameStatus());
     }
 
     @Test()
     void testAddPlayerConcreteGameThrowsExceptionWhenFull() {
-        Game fullGame = getNewGame();
-        fullGame.setPlayer2(getPlayer(SECOND_PLAYER_NAME));
-
-        GameStorage.getInstance().addGame(ID, fullGame);
+        GameStorage.getInstance().setGame(ID, getFullGame());
 
         Exception ex = assertThrows(RuntimeException.class, () -> gameService.addPlayerConcreteGame(getPlayer(SECOND_PLAYER_NAME), ID));
         assertEquals("Game is full", ex.getMessage());
@@ -83,14 +82,13 @@ class GameServiceTest {
         assertEquals(ID, actualGame.getUuid());
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(SECOND_PLAYER_NAME, actualGame.getPlayer2().getName());
+        assertEquals(GameStatus.IN_PROGRESS, actualGame.getGameStatus());
+
     }
 
     @Test
     void testAddPlayerToRandomGameThrowsExceptionWhenFull() {
-        Game fullGame = getNewGame();
-        fullGame.setPlayer2(getPlayer(SECOND_PLAYER_NAME));
-
-        GameStorage.getInstance().addGame(ID, fullGame);
+        GameStorage.getInstance().setGame(ID, getFullGame());
 
         Exception ex = assertThrows(RuntimeException.class, () -> gameService.addPlayerToRandomGame(getPlayer(SECOND_PLAYER_NAME)));
         assertEquals("No vacant game at the moment", ex.getMessage());

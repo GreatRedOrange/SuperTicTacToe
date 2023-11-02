@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import io.game.superttc.domain.Game;
-import io.game.superttc.domain.Player;
 
 public class GameStorage {
 
@@ -32,7 +31,7 @@ public class GameStorage {
         return games.get(uuid);
     }
 
-    public Game addGame(UUID uuid, Game game) {
+    public Game setGame(UUID uuid, Game game) {
         return games.put(uuid, game);
     }
 }

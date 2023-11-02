@@ -8,6 +8,7 @@ import io.game.superttc.domain.enums.GameStatus;
 
 import static io.game.superttc.utils.TestConstants.ID;
 import static io.game.superttc.utils.TestConstants.FIRST_PLAYER_NAME;
+import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
 
 public class TestData {
 
@@ -24,6 +25,16 @@ public class TestData {
                 .gameBoard(getGameBoard())
                 .player1(getPlayer(FIRST_PLAYER_NAME))
                 .gameStatus(GameStatus.NEW)
+                .build();
+    }
+
+    public static Game getFullGame(){
+        return Game.builder()
+                .uuid(ID)
+                .gameBoard(getGameBoard())
+                .player1(getPlayer(FIRST_PLAYER_NAME))
+                .player2(getPlayer(SECOND_PLAYER_NAME))
+                .gameStatus(GameStatus.IN_PROGRESS)
                 .build();
     }
 

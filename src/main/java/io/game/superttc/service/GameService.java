@@ -1,6 +1,5 @@
 package io.game.superttc.service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 public class GameService {
 
     private GameBoardCreationService gameBoardCreationService;
-    private GameStorage gameStorage;
 
     public Game createGame(Player player) {
         UUID uuid = UUID.randomUUID();
@@ -28,8 +26,7 @@ public class GameService {
                 .gameStatus(GameStatus.NEW)
                 .build();
 
-        GameStorage.getInstance().addGame(uuid, game);
-
+        GameStorage.getInstance().setGame(game.getUuid(), game);
         return game;
     }
 
@@ -39,21 +36,25 @@ public class GameService {
             throw new RuntimeException("Game is full");
         }
         game.setPlayer2(player);
-
-        return GameStorage.getInstance().addGame(uuid, game);
+        game.setGameStatus(GameStatus.IN_PROGRESS);
+        GameStorage.getInstance().setGame(game.getUuid(), game);
+        return GameStorage.getInstance().setGame(uuid, game);
     }
 
     public Game addPlayerToRandomGame(Player player) {
-        Optional<Game> game = GameStorage.getInstance().getGames().values()
+        Game game = GameStorage.getInstance().getGames().values()
                 .stream()
-                .filter(value -> value.getPlayer2() == null)
-                .findFirst();
+                .filter(value -> value.getGameStatus().equals(GameStatus.NEW))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No vacant game at the moment"));
 
-        game.ifPresent(g -> g.setPlayer2(player));
-        return game.orElseThrow(() -> new RuntimeException("No vacant game at the moment"));
+        game.setPlayer2(player);
+        game.setGameStatus(GameStatus.IN_PROGRESS);
+        GameStorage.getInstance().setGame(game.getUuid(), game);
+        return game;
     }
 
     private boolean checkIfGameFull(Game game) {
-        return game.getPlayer2() != null;
+        return game.getGameStatus().equals(GameStatus.IN_PROGRESS);
     }
 }
