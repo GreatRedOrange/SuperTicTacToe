@@ -1,6 +1,5 @@
 package io.game.superttc.service;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,12 +28,14 @@ public class GameService {
                 .gameStatus(GameStatus.NEW)
                 .build();
 
-        return GameStorage.getInstance().addGame(uuid, game);
+        GameStorage.getInstance().addGame(uuid, game);
+
+        return game;
     }
 
     public Game addPlayerConcreteGame(Player player, UUID uuid) {
         Game game = GameStorage.getInstance().getGameByUuid(uuid);
-        if(checkIfGameFull(game)){
+        if (checkIfGameFull(game)) {
             throw new RuntimeException("Game is full");
         }
         game.setPlayer2(player);
@@ -48,6 +49,7 @@ public class GameService {
                 .filter(value -> value.getPlayer2() == null)
                 .findFirst();
 
+        game.ifPresent(g -> g.setPlayer2(player));
         return game.orElseThrow(() -> new RuntimeException("No vacant game at the moment"));
     }
 
