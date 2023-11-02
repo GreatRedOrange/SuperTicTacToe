@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestEntity {
+public class Coordinates {
 
-    private Coordinates coordinates;
+    private Coordinate outerBoardCoordinate;
+    private Coordinate innerBoardCoordinate;
 
 }

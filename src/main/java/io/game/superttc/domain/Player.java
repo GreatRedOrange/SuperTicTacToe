@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Player {
 
-    String name;
+    private String name;
 
 }
