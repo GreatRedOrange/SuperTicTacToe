@@ -14,7 +14,7 @@ public class GameBoardCreationService {
 
     public static final int BOARD_ELEMENT_COUNT = 9;
 
-    public Board createBoard(){
+    public Board createBoard() {
         return fillBoardWithElements(new Board(), fillInnerBoardsWithCells());
     }
 
@@ -31,7 +31,7 @@ public class GameBoardCreationService {
     private List<Cell> getCells() {
         List<Cell> cellList = new ArrayList<>();
 
-        for (int i=0; i< BOARD_ELEMENT_COUNT; i++ ) {
+        for (int i = 0; i < BOARD_ELEMENT_COUNT; i++) {
             Cell cell = new Cell();
 
             cellList.add(cell);
@@ -43,7 +43,7 @@ public class GameBoardCreationService {
     private static List<Board> getInnerBoardList() {
         List<Board> innerBoardList = new ArrayList<>();
 
-        for (int i=0; i< BOARD_ELEMENT_COUNT; i++ ) {
+        for (int i = 0; i < BOARD_ELEMENT_COUNT; i++) {
             Board innerBoard = new Board();
             innerBoard.setBoardStatus(BoardStatus.NEW);
             innerBoardList.add(innerBoard);
@@ -55,8 +55,8 @@ public class GameBoardCreationService {
     private <E> Board fillBoardWithElements(Board board, List<E> elements) {
         int counter = 0;
 
-        for(int i = 0; i <  board.getBoardSpace().length; i++) {
-            for (int j = 0; j <  board.getBoardSpace()[i].length; j++) {
+        for (int i = 0; i < board.getBoardSpace().length; i++) {
+            for (int j = 0; j < board.getBoardSpace()[i].length; j++) {
                 board.getBoardSpace()[i][j] = elements.get(counter);
                 counter++;
             }

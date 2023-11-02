@@ -5,10 +5,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import io.game.superttc.domain.Game;
+import io.game.superttc.domain.Player;
 
 public class GameStorage {
 
     private static Map<UUID, Game> games;
+
     private static GameStorage instance;
 
     private GameStorage() {
@@ -28,5 +30,9 @@ public class GameStorage {
 
     public Game getGameByUuid(UUID uuid) {
         return games.get(uuid);
+    }
+
+    public Game addGame(UUID uuid, Game game) {
+        return games.put(uuid, game);
     }
 }
