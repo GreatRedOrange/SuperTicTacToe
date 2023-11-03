@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import io.game.superttc.domain.Board;
 import io.game.superttc.domain.Cell;
 import io.game.superttc.domain.enums.BoardStatus;
+import io.game.superttc.domain.enums.CellStatus;
 
 @Service
 public class GameBoardCreationService {
@@ -33,6 +34,7 @@ public class GameBoardCreationService {
 
         for (int i = 0; i < BOARD_ELEMENT_COUNT; i++) {
             Cell cell = new Cell();
+            cell.setCellStatus(CellStatus.EMPTY);
 
             cellList.add(cell);
         }

@@ -18,15 +18,11 @@ class GameBoardCreationServiceTest {
 
     @Test
     public void testGameBoardCreated() {
-        Cell expectedCell = new Cell();
-        expectedCell.setCellStatus(CellStatus.EMPTY);
-
         Board actualOuterBoard = gameBoardCreationService.createBoard();
         Board actualInnerBoard = (Board) actualOuterBoard.getBoardSpace()[0][0];
         Cell actualCell = (Cell) actualInnerBoard.getBoardSpace()[0][0];
 
         assertEquals(Board.class, actualInnerBoard.getClass());
-        assertEquals(expectedCell, actualCell);
-
+        assertEquals(CellStatus.EMPTY, actualCell.getCellStatus());
     }
 }

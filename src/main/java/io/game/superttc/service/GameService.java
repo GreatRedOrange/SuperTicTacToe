@@ -8,6 +8,7 @@ import io.game.superttc.domain.Game;
 import io.game.superttc.domain.Player;
 import io.game.superttc.domain.enums.GameStatus;
 import io.game.superttc.repository.GameStorage;
+import io.game.superttc.service.validation.WinValidator;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -15,12 +16,11 @@ import lombok.RequiredArgsConstructor;
 public class GameService {
 
     private GameBoardCreationService gameBoardCreationService;
+    private WinValidator winValidator;
 
     public Game createGame(Player player) {
-        UUID uuid = UUID.randomUUID();
-
         Game game = Game.builder()
-                .uuid(uuid)
+                .uuid(UUID.randomUUID())
                 .gameBoard(gameBoardCreationService.createBoard())
                 .player1(player)
                 .gameStatus(GameStatus.NEW)
@@ -38,7 +38,7 @@ public class GameService {
         game.setPlayer2(player);
         game.setGameStatus(GameStatus.IN_PROGRESS);
         GameStorage.getInstance().setGame(game.getUuid(), game);
-        return GameStorage.getInstance().setGame(uuid, game);
+        return game;
     }
 
     public Game addPlayerToRandomGame(Player player) {

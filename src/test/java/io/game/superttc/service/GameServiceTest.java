@@ -53,7 +53,6 @@ class GameServiceTest {
         assertEquals(getGameBoard().getBoardSpace().length, actualGame.getGameBoard().getBoardSpace().length);
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(GameStatus.NEW, actualGame.getGameStatus());
-
     }
 
     @Test
@@ -72,7 +71,6 @@ class GameServiceTest {
 
         Exception ex = assertThrows(RuntimeException.class, () -> gameService.addPlayerConcreteGame(getPlayer(SECOND_PLAYER_NAME), ID));
         assertEquals("Game is full", ex.getMessage());
-
     }
 
     @Test
@@ -83,7 +81,6 @@ class GameServiceTest {
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(SECOND_PLAYER_NAME, actualGame.getPlayer2().getName());
         assertEquals(GameStatus.IN_PROGRESS, actualGame.getGameStatus());
-
     }
 
     @Test
