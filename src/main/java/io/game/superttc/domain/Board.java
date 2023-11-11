@@ -1,6 +1,6 @@
 package io.game.superttc.domain;
 
-import io.game.superttc.domain.enums.BoardStatus;
+import io.game.superttc.domain.enums.XO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,11 +12,11 @@ import lombok.ToString;
 @ToString
 public class Board {
 
-    private Object[][] boardSpace;
-    private BoardStatus boardStatus;
+    private Board[][] boardSpace;
+    private XO xo;
 
-    public Board() {
-        boardSpace = new Object[3][3];
-        boardStatus = BoardStatus.NEW;
+    public Board(Board[][] board) {
+        boardSpace = board;
+        xo = XO.EMPTY;
     }
 }
