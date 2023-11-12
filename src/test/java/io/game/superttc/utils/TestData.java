@@ -3,9 +3,9 @@ package io.game.superttc.utils;
 import io.game.superttc.domain.Board;
 import io.game.superttc.domain.Game;
 import io.game.superttc.domain.Player;
-import io.game.superttc.domain.enums.BoardStatus;
 import io.game.superttc.domain.enums.GameStatus;
 
+import static io.game.superttc.utils.TestConstants.BOARD_SIZE;
 import static io.game.superttc.utils.TestConstants.ID;
 import static io.game.superttc.utils.TestConstants.FIRST_PLAYER_NAME;
 import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
@@ -13,8 +13,7 @@ import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
 public class TestData {
 
     public static Board getGameBoard() {
-        Board board = new Board();
-        board.setBoardStatus(BoardStatus.NEW);
+        Board board = new Board(new Board[BOARD_SIZE][BOARD_SIZE]);
 
         return board;
     }

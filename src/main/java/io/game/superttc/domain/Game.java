@@ -3,6 +3,7 @@ package io.game.superttc.domain;
 import java.util.UUID;
 
 import io.game.superttc.domain.enums.GameStatus;
+import io.game.superttc.domain.enums.XO;
 import lombok.Builder;
 import lombok.Data;
 

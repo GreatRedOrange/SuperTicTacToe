@@ -49,7 +49,6 @@ class GameServiceTest {
         Game actualGame = gameService.createGame(getPlayer(FIRST_PLAYER_NAME));
 
         assertEquals(UUID.class, actualGame.getUuid().getClass());
-        assertEquals(getGameBoard().getBoardStatus(), actualGame.getGameBoard().getBoardStatus());
         assertEquals(getGameBoard().getBoardSpace().length, actualGame.getGameBoard().getBoardSpace().length);
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(GameStatus.NEW, actualGame.getGameStatus());
