@@ -3,13 +3,15 @@ package io.game.superttc.domain;
 import io.game.superttc.domain.enums.XO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
+@NoArgsConstructor
 public class Board {
 
     private Board[][] boardSpace;
