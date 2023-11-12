@@ -23,25 +23,25 @@ public class GameBoardCreationService {
     }
 
     private List<Board> fillBoardsWithEmptyCells() {
-        List<Board> boards = getBoardList(boardSupplier);
+        List<Board> innerBoards = getElementList(boardSupplier);
 
-        for (Board innerBoard : boards) {
-            fillBoardWithElements(innerBoard, getBoardList(cellSupplier));
+        for (Board innerBoard : innerBoards) {
+            fillBoardWithElements(innerBoard, getElementList(cellSupplier));
         }
 
-        return boards;
+        return innerBoards;
     }
 
-    private static List<Board> getBoardList(Supplier<Board> boardSupplier) {
-        List<Board> innerBoardList = new ArrayList<>();
+    private static List<Board> getElementList(Supplier<Board> boardSupplier) {
+        List<Board> elementList = new ArrayList<>();
 
         for (int i = 0; i < BOARD_ELEMENT_COUNT; i++) {
-            Board innerBoard = boardSupplier.get();
-            innerBoard.setXo(XO.EMPTY);
-            innerBoardList.add(innerBoard);
+            Board element = boardSupplier.get();
+            element.setXo(XO.EMPTY);
+            elementList.add(element);
         }
 
-        return innerBoardList;
+        return elementList;
     }
 
     private Board fillBoardWithElements(Board board, List<Board> elements) {
