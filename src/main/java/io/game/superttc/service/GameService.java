@@ -8,7 +8,6 @@ import io.game.superttc.domain.Game;
 import io.game.superttc.domain.Player;
 import io.game.superttc.domain.enums.GameStatus;
 import io.game.superttc.repository.GameStorage;
-import io.game.superttc.service.validation.WinValidator;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -16,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 public class GameService {
 
     private GameBoardCreationService gameBoardCreationService;
-    private WinValidator winValidator;
 
     public Game createGame(Player player) {
         Game game = Game.builder()
