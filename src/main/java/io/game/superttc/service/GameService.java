@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GameService {
 
-    private GameBoardCreationService gameBoardCreationService;
+    private final GameBoardCreationService gameBoardCreationService;
 
     public Game createGame(Player player) {
         Game game = Game.builder()
