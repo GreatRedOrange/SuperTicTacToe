@@ -2,32 +2,37 @@ package io.game.superttc.service.validation;
 
 import org.springframework.stereotype.Service;
 
+import io.game.superttc.domain.Board;
+import io.game.superttc.domain.enums.XO;
+
 @Service
 public class WinValidator {
 
-    public static boolean checkWin(char[][] board, char player, int row, int col) {
-        // Check the small board for a win
-        int startRow = row * 3;
-        int startCol = col * 3;
-        for (int i = 0; i < 3; i++) {
-            if (board[startRow + i][startCol] == player && board[startRow + i][startCol + 1] == player
-                    && board[startRow + i][startCol + 2] == player) {
-                return true; // Row win
+    //Todo: add a method to check outer board and all inner boards / possibly for another class
+
+    public XO checkForWinner(Board[][] board) {
+
+        for (int i = 0; i < board.length; i++) {
+            if (checkLine(board[i][0], board[i][1], board[i][2])) {
+                return board[i][0].getXo();
             }
-            if (board[startRow][startCol + i] == player && board[startRow + 1][startCol + i] == player
-                    && board[startRow + 2][startCol + i] == player) {
-                return true; // Column win
+            if (checkLine(board[0][i], board[1][i], board[2][i])) {
+                return board[0][i].getXo();
             }
         }
-        if (board[startRow][startCol] == player && board[startRow + 1][startCol + 1] == player
-                && board[startRow + 2][startCol + 2] == player) {
-            return true; // Diagonal win
+
+        if (checkLine(board[0][0], board[1][1], board[2][2])) {
+            return board[0][0].getXo();
         }
-        if (board[startRow][startCol + 2] == player && board[startRow + 1][startCol + 1] == player
-                && board[startRow + 2][startCol] == player) {
-            return true; // Diagonal win
+        if (checkLine(board[0][2], board[1][1], board[2][0])) {
+            return board[0][2].getXo();
         }
-        return false;
+
+        return XO.EMPTY;
+    }
+
+    private boolean checkLine(Board cell1, Board cell2, Board cell3) {
+        return (cell1.getXo() != XO.EMPTY && cell1.getXo() == cell2.getXo() && cell2.getXo() == cell3.getXo());
     }
 
 }

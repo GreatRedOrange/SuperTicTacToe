@@ -1,6 +1,7 @@
 package io.game.superttc.domain;
 
 import io.game.superttc.domain.enums.XO;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
 public class Board {
 
