@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import io.game.superttc.domain.Game;
 import io.game.superttc.domain.Player;
 import io.game.superttc.domain.enums.GameStatus;
+import io.game.superttc.domain.enums.XO;
 import io.game.superttc.repository.GameStorage;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,8 @@ public class GameService {
     private final GameBoardCreationService gameBoardCreationService;
 
     public Game createGame(Player player) {
+        player.setXo(XO.X);
+
         Game game = Game.builder()
                 .uuid(UUID.randomUUID())
                 .gameBoard(gameBoardCreationService.createBoard())
@@ -29,6 +32,8 @@ public class GameService {
     }
 
     public Game addPlayerConcreteGame(Player player, UUID uuid) {
+        player.setXo(XO.O);
+
         Game game = GameStorage.getInstance().getGameByUuid(uuid);
         if (checkIfGameFull(game)) {
             throw new RuntimeException("Game is full");
@@ -40,6 +45,8 @@ public class GameService {
     }
 
     public Game addPlayerToRandomGame(Player player) {
+        player.setXo(XO.O);
+
         Game game = GameStorage.getInstance().getGames().values()
                 .stream()
                 .filter(value -> value.getGameStatus().equals(GameStatus.NEW))

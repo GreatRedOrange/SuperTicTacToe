@@ -1,5 +1,6 @@
 package io.game.superttc.domain;
 
+import java.util.List;
 import java.util.UUID;
 
 import io.game.superttc.domain.enums.GameStatus;
@@ -17,5 +18,7 @@ public class Game {
     private Player player1;
     private Player player2;
     private GameStatus gameStatus;
+    private boolean firstPlayerMove = true;
+    private List<Coordinate> validPlayBoards;
     private Board gameBoard;
 }
