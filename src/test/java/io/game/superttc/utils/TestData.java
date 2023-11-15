@@ -12,16 +12,15 @@ import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
 
 public class TestData {
 
-    public static Board getGameBoard() {
-        Board board = new Board(new Board[BOARD_SIZE][BOARD_SIZE]);
+    public static Board getNullGameBoard() {
 
-        return board;
+        return new Board(new Board[BOARD_SIZE][BOARD_SIZE]);
     }
 
     public static Game getNewGame(){
         return Game.builder()
                 .uuid(ID)
-                .gameBoard(getGameBoard())
+                .gameBoard(getNullGameBoard())
                 .player1(getPlayer(FIRST_PLAYER_NAME))
                 .gameStatus(GameStatus.NEW)
                 .build();
@@ -30,7 +29,7 @@ public class TestData {
     public static Game getFullGame(){
         return Game.builder()
                 .uuid(ID)
-                .gameBoard(getGameBoard())
+                .gameBoard(getNullGameBoard())
                 .player1(getPlayer(FIRST_PLAYER_NAME))
                 .player2(getPlayer(SECOND_PLAYER_NAME))
                 .gameStatus(GameStatus.IN_PROGRESS)
@@ -42,4 +41,6 @@ public class TestData {
                 .name(playerName)
                 .build();
     }
+
+
 }

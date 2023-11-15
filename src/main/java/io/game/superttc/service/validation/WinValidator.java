@@ -8,9 +8,7 @@ import io.game.superttc.domain.enums.XO;
 @Service
 public class WinValidator {
 
-    //Todo: add a method to check outer board and all inner boards / possibly for another class
-
-    public XO checkForWinner(Board[][] board) {
+    public XO getWonXO(Board[][] board) {
 
         for (int i = 0; i < board.length; i++) {
             if (checkLine(board[i][0], board[i][1], board[i][2])) {
@@ -34,5 +32,4 @@ public class WinValidator {
     private boolean checkLine(Board cell1, Board cell2, Board cell3) {
         return (cell1.getXo() != XO.EMPTY && cell1.getXo() == cell2.getXo() && cell2.getXo() == cell3.getXo());
     }
-
 }
