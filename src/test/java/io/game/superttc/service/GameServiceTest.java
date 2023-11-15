@@ -24,7 +24,7 @@ import static io.game.superttc.utils.TestConstants.FIRST_PLAYER_NAME;
 import static io.game.superttc.utils.TestConstants.ID;
 import static io.game.superttc.utils.TestConstants.SECOND_PLAYER_NAME;
 import static io.game.superttc.utils.TestData.getFullGame;
-import static io.game.superttc.utils.TestData.getGameBoard;
+import static io.game.superttc.utils.TestData.getNullGameBoard;
 import static io.game.superttc.utils.TestData.getNewGame;
 import static io.game.superttc.utils.TestData.getPlayer;
 
@@ -41,7 +41,7 @@ class GameServiceTest {
     @BeforeEach
     void setup() {
         GameStorage.getInstance().setGame(ID, getNewGame());
-        when(gameBoardCreationService.createBoard()).thenReturn(getGameBoard());
+        when(gameBoardCreationService.createBoard()).thenReturn(getNullGameBoard());
     }
 
     @Test
@@ -49,7 +49,7 @@ class GameServiceTest {
         Game actualGame = gameService.createGame(getPlayer(FIRST_PLAYER_NAME));
 
         assertEquals(UUID.class, actualGame.getUuid().getClass());
-        assertEquals(getGameBoard().getBoardSpace().length, actualGame.getGameBoard().getBoardSpace().length);
+        assertEquals(getNullGameBoard().getBoardSpace().length, actualGame.getGameBoard().getBoardSpace().length);
         assertEquals(FIRST_PLAYER_NAME, actualGame.getPlayer1().getName());
         assertEquals(GameStatus.NEW, actualGame.getGameStatus());
     }

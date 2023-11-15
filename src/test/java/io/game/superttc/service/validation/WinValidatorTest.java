@@ -1,10 +1,10 @@
 package io.game.superttc.service.validation;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.game.superttc.domain.Board;
 import io.game.superttc.domain.enums.XO;
@@ -12,7 +12,7 @@ import io.game.superttc.domain.enums.XO;
 @SpringBootTest
 class WinValidatorTest {
 
-    @Autowired
+    @InjectMocks
     private WinValidator winValidator;
 
     @Test
@@ -23,7 +23,7 @@ class WinValidatorTest {
                 { new Board(null, XO.EMPTY), new Board(null, XO.EMPTY), new Board(null, XO.EMPTY) }
         };
 
-        assertEquals(XO.X, winValidator.checkForWinner(board));
+        assertEquals(XO.X, winValidator.getWonXO(board));
     }
 
     @Test
@@ -34,7 +34,7 @@ class WinValidatorTest {
                 { new Board(null, XO.X), new Board(null, XO.EMPTY), new Board(null, XO.EMPTY) }
         };
 
-        assertEquals(XO.X, winValidator.checkForWinner(board));
+        assertEquals(XO.X, winValidator.getWonXO(board));
     }
 
     @Test
@@ -45,7 +45,7 @@ class WinValidatorTest {
                 { new Board(null, XO.EMPTY), new Board(null, XO.EMPTY), new Board(null, XO.X) }
         };
 
-        assertEquals(XO.X, winValidator.checkForWinner(board));
+        assertEquals(XO.X, winValidator.getWonXO(board));
     }
 
     @Test
@@ -56,6 +56,6 @@ class WinValidatorTest {
                 { new Board(null, XO.O), new Board(null, XO.X), new Board(null, XO.O) }
         };
 
-        assertEquals(XO.EMPTY, winValidator.checkForWinner(board));
+        assertEquals(XO.EMPTY, winValidator.getWonXO(board));
     }
 }
