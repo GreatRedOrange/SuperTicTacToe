@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class Player {
 
     private String name;
-    XO xo;
+    private XO xo;
 
 }

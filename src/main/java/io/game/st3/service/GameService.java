@@ -85,6 +85,8 @@ public class GameService {
                     .getByCoordinate(coordinates.getOuterPos())
                     .getByCoordinate(coordinates.getInnerPos())
                     .setXo(player.getXo());
+        } else {
+            throw new RuntimeException("This cell is occupied");
         }
     }
 
